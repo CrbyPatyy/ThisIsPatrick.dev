@@ -29,6 +29,10 @@ export const metadata: Metadata = {
     description: "Full-Stack Developer crafting digital experiences that matter. Portfolio showcasing web development projects, skills, and expertise.",
     keywords: ["developer", "portfolio", "full-stack", "web development", "React", "Next.js", "TypeScript"],
     authors: [{ name: "Patrick" }],
+    icons: {
+        icon: '/icon.png',
+        apple: '/icon.png',
+    },
     openGraph: {
         title: "Patrick | Full-Stack Developer",
         description: "Full-Stack Developer crafting digital experiences that matter.",
