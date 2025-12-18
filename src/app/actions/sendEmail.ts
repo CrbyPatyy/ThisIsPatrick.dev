@@ -47,7 +47,7 @@ export async function sendEmail(formData: FormData): Promise<FormResponse> {
     try {
         const { data, error } = await resend.emails.send({
             from: 'Portfolio Contact <onboarding@resend.dev>',
-            to: process.env.CONTACT_EMAIL || 'Patrickpilapilvillanueva@gmail.com',
+            to: process.env.CONTACT_EMAIL || 'patrickpilapilvillanueva@gmail.com',
             replyTo: formData.email,
             subject: `Portfolio: ${formData.subject}`,
             html: `
