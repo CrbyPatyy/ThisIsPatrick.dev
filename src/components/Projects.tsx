@@ -1,20 +1,32 @@
 'use client';
 
+import { useState } from 'react';
 import Link from 'next/link';
 import { useScrollReveal } from '@/hooks/useScrollReveal';
 import { projects } from '@/data/projects';
 import MagneticText from './MagneticText';
+import StaggerText from './StaggerText';
+import MagneticWrapper from './MagneticWrapper';
+import ProjectHoverPreview from './ProjectHoverPreview';
 
 export default function Projects() {
     const [headerRef, headerVisible] = useScrollReveal<HTMLDivElement>();
+    const [activeId, setActiveId] = useState<number | null>(null);
 
     return (
         <section id="projects" className="min-h-screen flex items-center py-28 lg:py-40">
+            <ProjectHoverPreview activeId={activeId} projects={projects} />
             <div className="container">
                 <div ref={headerRef} className={`flex flex-col md:flex-row md:items-end justify-between gap-4 mb-16 transition-all duration-[1200ms] ease-[cubic-bezier(0.16,1,0.3,1)] ${headerVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-16'}`}>
                     <div>
                         <p className="text-xs text-[var(--text-muted)] uppercase tracking-[0.2em] mb-4">Featured Work</p>
-                        <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-normal tracking-tight">Selected<br />Projects</h2>
+                        <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-normal tracking-tight">
+                            {headerVisible && <StaggerText text="Selected" tag="span" />}
+                            {!headerVisible && <span style={{ opacity: 0 }}>Selected</span>}
+                            <br />
+                            {headerVisible && <StaggerText text="Projects" tag="span" delay={150} />}
+                            {!headerVisible && <span style={{ opacity: 0 }}>Projects</span>}
+                        </h2>
                     </div>
                     <a href="https://github.com/CrbyPatyy" target="_blank" rel="noopener noreferrer" className="text-sm text-[var(--text-secondary)]" aria-label="View all projects on GitHub">
                         <MagneticText text="View archive →" className="!px-0 !py-0" />
@@ -22,7 +34,9 @@ export default function Projects() {
                 </div>
                 <div className="space-y-6 sm:space-y-8">
                     {projects.map((project, index) => (
-                        <ProjectCard key={project.id} project={project} index={index} />
+                        <div key={project.id} onMouseEnter={() => setActiveId(project.id)} onMouseLeave={() => setActiveId(null)}>
+                            <ProjectCard project={project} index={index} />
+                        </div>
                     ))}
                 </div>
             </div>
@@ -61,11 +75,13 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
                     </div>
                     <div className="lg:col-span-2 flex items-center justify-between lg:justify-end gap-4">
                         <span className="text-sm text-[var(--text-muted)]">{project.year}</span>
-                        <div className={`w-12 h-12 rounded-full border flex items-center justify-center transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${isComingSoon ? 'border-amber-300 group-hover:bg-amber-500 group-hover:border-amber-500 group-hover:text-white' : 'border-[var(--border)] group-hover:bg-[var(--accent)] group-hover:border-[var(--accent)] group-hover:text-white group-hover:scale-110'}`}>
-                            <svg className="w-5 h-5 -rotate-45 group-hover:rotate-0 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                            </svg>
-                        </div>
+                        <MagneticWrapper strength={0.4}>
+                            <div className={`w-12 h-12 rounded-full border flex items-center justify-center transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${isComingSoon ? 'border-amber-300 group-hover:bg-amber-500 group-hover:border-amber-500 group-hover:text-white' : 'border-[var(--border)] group-hover:bg-[var(--accent)] group-hover:border-[var(--accent)] group-hover:text-white group-hover:scale-110 shadow-sm'}`}>
+                                <svg className="w-5 h-5 -rotate-45 group-hover:rotate-0 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                                </svg>
+                            </div>
+                        </MagneticWrapper>
                     </div>
                 </div>
             </Link>

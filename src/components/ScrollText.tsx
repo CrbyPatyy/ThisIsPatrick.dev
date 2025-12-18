@@ -85,6 +85,7 @@ export function ScrollStatement({
 }) {
     const ref = useRef<HTMLDivElement>(null);
     const [style, setStyle] = useState({ opacity: 0, scale: 0.95, y: 30 });
+    const [isVisible, setIsVisible] = useState(false);
     const lastStyleRef = useRef({ opacity: 0, scale: 0.95, y: 30 });
     const rafRef = useRef<number | null>(null);
 
@@ -105,6 +106,11 @@ export function ScrollStatement({
         const scale = 0.95 + (1 - Math.abs(normalizedDistance)) * 0.05;
         const y = normalizedDistance * 30;
 
+        // Trigger visibility when near center
+        if (opacity > 0.5 && !isVisible) {
+            setIsVisible(true);
+        }
+
         // Only update if values changed significantly
         const last = lastStyleRef.current;
         if (
@@ -115,7 +121,7 @@ export function ScrollStatement({
             lastStyleRef.current = { opacity, scale, y };
             setStyle({ opacity, scale, y });
         }
-    }, []);
+    }, [isVisible]);
 
     useEffect(() => {
         const onScroll = () => {
@@ -131,6 +137,37 @@ export function ScrollStatement({
         };
     }, [handleScroll]);
 
+    // Split text into words for stagger effect (prevents word breaks)
+    const renderStaggeredText = (text: string, delay: number = 0, muted: boolean = false) => {
+        const words = text.split(' ');
+        let charIndex = 0;
+
+        return words.map((word, wordIndex) => (
+            <span key={wordIndex} style={{ display: 'inline-block', whiteSpace: 'nowrap' }}>
+                {word.split('').map((char) => {
+                    const currentIndex = charIndex++;
+                    return (
+                        <span
+                            key={currentIndex}
+                            className={`inline-block ${muted ? 'text-[var(--text-muted)]' : ''}`}
+                            style={{
+                                opacity: isVisible ? 1 : 0,
+                                transform: isVisible ? 'translateY(0)' : 'translateY(100%)',
+                                transition: `opacity 0.5s ease, transform 0.5s ease`,
+                                transitionDelay: `${delay + currentIndex * 25}ms`,
+                            }}
+                        >
+                            {char}
+                        </span>
+                    );
+                })}
+                {wordIndex < words.length - 1 && (
+                    <span style={{ opacity: isVisible ? 1 : 0, transition: 'opacity 0.5s ease', transitionDelay: `${delay + charIndex++ * 25}ms` }}>&nbsp;</span>
+                )}
+            </span>
+        ));
+    };
+
     return (
         <div
             ref={ref}
@@ -143,9 +180,12 @@ export function ScrollStatement({
         >
             <div className="container">
                 <p className="scroll-text">
-                    {primary}
+                    {renderStaggeredText(primary)}
                     {secondary && (
-                        <span className="text-[var(--text-muted)]"> {secondary}</span>
+                        <>
+                            {' '}
+                            {renderStaggeredText(secondary, primary.length * 25, true)}
+                        </>
                     )}
                 </p>
             </div>

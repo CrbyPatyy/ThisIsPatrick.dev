@@ -3,6 +3,7 @@
 import { useRef, useEffect, useState } from 'react';
 import { sendEmail } from '@/app/actions/sendEmail';
 import MagneticText from './MagneticText';
+import StaggerText from './StaggerText';
 
 export default function Contact() {
     const ref = useRef<HTMLDivElement>(null);
@@ -53,7 +54,16 @@ export default function Contact() {
                     {/* Left side - Info */}
                     <div className="text-center lg:text-left">
                         <p className="text-xs text-[var(--text-muted)] uppercase tracking-[0.2em] mb-6 font-medium">Get in Touch</p>
-                        <h2 className="text-4xl md:text-5xl lg:text-6xl font-normal tracking-tight leading-[1.1] mb-8 text-[var(--text-primary)]">Let&apos;s build<br />something<br />great.</h2>
+                        <h2 className="text-4xl md:text-5xl lg:text-6xl font-normal tracking-tight leading-[1.1] mb-8 text-[var(--text-primary)]">
+                            {visible && <StaggerText text="Let's build" tag="span" />}
+                            {!visible && <span style={{ opacity: 0 }}>Let&apos;s build</span>}
+                            <br />
+                            {visible && <StaggerText text="something" tag="span" delay={200} />}
+                            {!visible && <span style={{ opacity: 0 }}>something</span>}
+                            <br />
+                            {visible && <StaggerText text="great." tag="span" delay={400} />}
+                            {!visible && <span style={{ opacity: 0 }}>great.</span>}
+                        </h2>
                         <p className="text-base sm:text-lg text-[var(--text-secondary)] mb-10 max-w-md mx-auto lg:mx-0 leading-relaxed">Have a project in mind? I&apos;d love to hear about it. Let&apos;s create something amazing together.</p>
 
                         <div className="flex flex-col sm:flex-row flex-wrap justify-center lg:justify-start gap-4 sm:gap-6 max-w-lg mx-auto lg:mx-0">

@@ -3,6 +3,7 @@
 import { useEffect, useState, useRef } from 'react';
 import InteractiveMesh from './InteractiveMesh';
 import MagneticText from './MagneticText';
+import StaggerText from './StaggerText';
 
 export default function Hero() {
     const [loaded, setLoaded] = useState(false);
@@ -22,6 +23,7 @@ export default function Hero() {
         window.addEventListener('scroll', handleScroll, { passive: true });
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
+
 
     return (
         <section ref={sectionRef} className="min-h-[150vh] relative">
@@ -52,17 +54,18 @@ export default function Hero() {
                         </span>
                     </div>
 
-                    {/* Main Name - Large Bold Typography like reference site */}
                     <div className="overflow-hidden mb-2">
                         <h1
-                            className={`text-[clamp(5rem,20vw,16rem)] uppercase tracking-[-0.02em] leading-[0.85] transition-all duration-1000 ${loaded ? 'mask-reveal' : 'opacity-0'
+                            className={`text-[clamp(5rem,20vw,16rem)] uppercase tracking-[-0.02em] leading-[0.85] cursor-invert-target ${loaded ? 'opacity-100' : 'opacity-0'
                                 }`}
                             style={{
                                 transitionDelay: '0.4s',
                                 fontFamily: 'var(--font-bebas), sans-serif',
                             }}
                         >
-                            <span className="text-neutral-900">Patrick</span>
+                            <span className="text-neutral-900">
+                                {loaded ? <StaggerText text="Patrick" delay={400} /> : "Patrick"}
+                            </span>
                             <span className="text-neutral-300">.</span>
                         </h1>
                     </div>

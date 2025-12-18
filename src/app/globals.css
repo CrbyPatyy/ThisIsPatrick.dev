@@ -848,3 +848,82 @@
     transition-duration: 0.01ms !important;
   }
 }
+
+/* ===== Scroll Snap ===== */
+@media (min-width: 1024px) {
+  .scroll-snap-container {
+    scroll-snap-type: y proximity;
+    overflow-y: auto;
+    height: 100vh;
+  }
+
+  .scroll-snap-section {
+    scroll-snap-align: start;
+    scroll-snap-stop: normal;
+  }
+}
+
+/* ===== Staggered Text Animation ===== */
+.stagger-text {
+  display: inline-block;
+  overflow: hidden;
+}
+
+.stagger-text .char {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(100%);
+  animation: charReveal 0.6s var(--ease-out-expo) forwards;
+}
+
+@keyframes charReveal {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Stagger delay utilities */
+.stagger-text .char:nth-child(1) {
+  animation-delay: 0ms;
+}
+
+.stagger-text .char:nth-child(2) {
+  animation-delay: 30ms;
+}
+
+.stagger-text .char:nth-child(3) {
+  animation-delay: 60ms;
+}
+
+.stagger-text .char:nth-child(4) {
+  animation-delay: 90ms;
+}
+
+.stagger-text .char:nth-child(5) {
+  animation-delay: 120ms;
+}
+
+.stagger-text .char:nth-child(6) {
+  animation-delay: 150ms;
+}
+
+.stagger-text .char:nth-child(7) {
+  animation-delay: 180ms;
+}
+
+.stagger-text .char:nth-child(8) {
+  animation-delay: 210ms;
+}
+
+.stagger-text .char:nth-child(9) {
+  animation-delay: 240ms;
+}
+
+.stagger-text .char:nth-child(10) {
+  animation-delay: 270ms;
+}
+
+.stagger-text .char:nth-child(n+11) {
+  animation-delay: 300ms;
+}

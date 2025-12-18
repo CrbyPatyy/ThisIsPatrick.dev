@@ -3,6 +3,7 @@ import { Inter, Syne, Bebas_Neue } from 'next/font/google';
 import "./globals.css";
 import SmoothScroll from "@/components/SmoothScroll";
 import LoadingScreen from "@/components/LoadingScreen";
+import CustomCursor from "@/components/CustomCursor";
 
 const inter = Inter({
     subsets: ['latin'],
@@ -65,6 +66,7 @@ export default function RootLayout({
                 <div className="noise" />
 
                 <LoadingScreen />
+                <CustomCursor />
                 <SmoothScroll>
                     {children}
                 </SmoothScroll>
