@@ -173,6 +173,44 @@ export default function ProjectPage() {
                             )}
                         </div>
 
+                        {/* Project Metrics */}
+                        {project.metrics && project.metrics.length > 0 && (
+                            <div className="border-t border-[var(--border)] pt-12">
+                                <h3 className="text-xs font-mono uppercase tracking-widest text-[var(--text-muted)] mb-8">Project Metrics</h3>
+                                <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                                    {project.metrics.map((metric, idx) => (
+                                        <div key={idx} className="border border-[var(--border)] p-6 hover:bg-[var(--bg-secondary)] transition-colors">
+                                            <p className="text-xs font-mono uppercase tracking-widest text-[var(--text-muted)] mb-2">{metric.label}</p>
+                                            <p className="text-3xl font-light mb-2">{metric.value}</p>
+                                            {metric.description && (
+                                                <p className="text-sm text-[var(--text-secondary)]">{metric.description}</p>
+                                            )}
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        )}
+
+                        {/* Tech Stack Decisions */}
+                        {project.techDecisions && project.techDecisions.length > 0 && (
+                            <div className="border-t border-[var(--border)] pt-12">
+                                <h3 className="text-xs font-mono uppercase tracking-widest text-[var(--text-muted)] mb-8">Technology Decisions</h3>
+                                <div className="space-y-8">
+                                    {project.techDecisions.map((decision, idx) => (
+                                        <div key={idx} className="grid md:grid-cols-4 gap-6 pb-8 border-b border-[var(--border)] last:border-b-0">
+                                            <div className="md:col-span-1">
+                                                <h4 className="text-lg font-medium">{decision.technology}</h4>
+                                            </div>
+                                            <div className="md:col-span-3">
+                                                <p className="text-[var(--text-secondary)] leading-relaxed">{decision.reason}</p>
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        )}
+
+
                     </div>
                 </div>
 
