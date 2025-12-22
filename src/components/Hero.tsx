@@ -1,7 +1,6 @@
 'use client';
 
 import { useEffect, useState, useRef } from 'react';
-import InteractiveMesh from './InteractiveMesh';
 import MagneticText from './MagneticText';
 
 export default function Hero() {
@@ -39,9 +38,6 @@ export default function Hero() {
 
     return (
         <section ref={sectionRef} className="min-h-[150vh] relative">
-            {/* Dynamic Mesh Background */}
-            <InteractiveMesh />
-
             {/* Fixed content that animates on scroll with PARALLAX */}
             <div
                 className="sticky top-0 min-h-screen flex flex-col justify-between py-24 lg:py-32"
