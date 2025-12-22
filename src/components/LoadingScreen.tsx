@@ -8,6 +8,7 @@ export default function LoadingScreen() {
     const containerRef = useRef<HTMLDivElement>(null);
     const progressRef = useRef<HTMLDivElement>(null);
     const counterRef = useRef<HTMLSpanElement>(null);
+    const percentRef = useRef<HTMLSpanElement>(null);
     const textRef = useRef<HTMLDivElement>(null);
     const lineRef = useRef<HTMLDivElement>(null);
 
@@ -24,8 +25,9 @@ export default function LoadingScreen() {
         const text = textRef.current;
         const line = lineRef.current;
         const progress = progressRef.current;
+        const percent = percentRef.current;
 
-        if (!container || !counter || !text || !line || !progress) return;
+        if (!container || !counter || !percent || !text || !line || !progress) return;
 
         // Animate counter from 0 to 100
         const counterObj = { value: 0 };
@@ -57,7 +59,7 @@ export default function LoadingScreen() {
         const exitTimeline = gsap.timeline({ delay: 2.3 });
 
         exitTimeline
-            .to([counter, text], {
+            .to([counter, percent, text], {
                 y: -30,
                 opacity: 0,
                 duration: 0.5,
@@ -103,13 +105,20 @@ export default function LoadingScreen() {
             </div>
 
             {/* Counter */}
-            <div className="relative">
+            <div className="relative flex items-baseline">
                 <span
                     ref={counterRef}
                     className="text-[clamp(5rem,20vw,12rem)] font-light text-white tracking-tighter tabular-nums"
                     style={{ fontFamily: 'var(--font-bebas), sans-serif' }}
                 >
                     000
+                </span>
+                <span
+                    ref={percentRef}
+                    className="text-[clamp(5rem,20vw,12rem)] font-light text-white tracking-tighter"
+                    style={{ fontFamily: 'var(--font-bebas), sans-serif' }}
+                >
+                    %
                 </span>
             </div>
 

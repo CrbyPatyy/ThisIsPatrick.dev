@@ -47,140 +47,127 @@ export default function EnhancedCursor() {
 
         if (!cursor || !dot || !ring) return;
 
-        let animationId: number;
+        // Use GSAP quickTo for smoother performance
+        const xTo = gsap.quickTo(cursor, "x", { duration: 0.5, ease: "power3.out" });
+        const yTo = gsap.quickTo(cursor, "y", { duration: 0.5, ease: "power3.out" });
+        const dotXTo = gsap.quickTo(dot, "x", { duration: 0.1, ease: "none" });
+        const dotYTo = gsap.quickTo(dot, "y", { duration: 0.1, ease: "none" });
 
-        // Smooth cursor follow
-        const animate = () => {
-            pos.current.x += (mouse.current.x - pos.current.x) * 0.15;
-            pos.current.y += (mouse.current.y - pos.current.y) * 0.15;
-
-            cursor.style.transform = `translate3d(${pos.current.x}px, ${pos.current.y}px, 0)`;
-            dot.style.transform = `translate3d(${mouse.current.x}px, ${mouse.current.y}px, 0)`;
-
-            animationId = requestAnimationFrame(animate);
-        };
+        // Track current state to prevent animation spam
+        let currentState = 'default';
+        let lastCheck = 0;
+        const CHECK_INTERVAL = 50; // ms between state checks
 
         const handleMouseMove = (e: MouseEvent) => {
-            mouse.current = { x: e.clientX, y: e.clientY };
+            // Update positions immediately
+            xTo(e.clientX);
+            yTo(e.clientY);
+            dotXTo(e.clientX);
+            dotYTo(e.clientY);
+
+            // Throttle interactive state checks
+            const now = Date.now();
+            if (now - lastCheck < CHECK_INTERVAL) return;
+            lastCheck = now;
 
             const target = e.target as HTMLElement;
             const { cursorText, isLink, isDark, isLight } = getInteractiveState(target);
 
-            if (cursorText && text) {
-                // Show text mode
-                if (text.textContent !== cursorText) {
+            // Determine new state
+            let newState = 'default';
+            if (cursorText) newState = 'text:' + cursorText;
+            else if (isLink) newState = 'link';
+
+            // Only animate if state changed
+            if (newState !== currentState) {
+                currentState = newState;
+
+                if (cursorText && text) {
                     text.textContent = cursorText;
+                    gsap.to(ring, {
+                        width: 80,
+                        height: 80,
+                        marginLeft: -40,
+                        marginTop: -40,
+                        duration: 0.3,
+                        ease: 'power2.out',
+                        overwrite: 'auto',
+                    });
+                    gsap.to(text, { opacity: 1, duration: 0.15, overwrite: 'auto' });
+                    gsap.to(dot, { opacity: 0, duration: 0.15, overwrite: 'auto' });
+                } else if (isLink) {
+                    gsap.to(ring, {
+                        width: 60,
+                        height: 60,
+                        marginLeft: -30,
+                        marginTop: -30,
+                        duration: 0.3,
+                        ease: 'power2.out',
+                        overwrite: 'auto',
+                    });
+                    if (text) gsap.to(text, { opacity: 0, duration: 0.15, overwrite: 'auto' });
+                    gsap.to(dot, { opacity: 1, scale: 1.5, duration: 0.15, overwrite: 'auto' });
+                } else {
+                    gsap.to(ring, {
+                        width: 40,
+                        height: 40,
+                        marginLeft: -20,
+                        marginTop: -20,
+                        duration: 0.3,
+                        ease: 'power2.out',
+                        overwrite: 'auto',
+                    });
+                    if (text) gsap.to(text, { opacity: 0, duration: 0.15, overwrite: 'auto' });
+                    gsap.to(dot, { opacity: 1, scale: 1, duration: 0.15, overwrite: 'auto' });
                 }
-                gsap.to(ring, {
-                    width: 80,
-                    height: 80,
-                    marginLeft: -40,
-                    marginTop: -40,
-                    duration: 0.4,
-                    ease: 'power2.out',
-                    overwrite: true,
-                });
-                gsap.to(text, { opacity: 1, duration: 0.2, overwrite: true });
-                gsap.to(dot, { opacity: 0, duration: 0.2, overwrite: true });
-            } else if (isLink) {
-                // Hover mode - LARGER expansion
-                gsap.to(ring, {
-                    width: 60,
-                    height: 60,
-                    marginLeft: -30,
-                    marginTop: -30,
-                    duration: 0.4,
-                    ease: 'power2.out',
-                    overwrite: true,
-                });
-                if (text) gsap.to(text, { opacity: 0, duration: 0.2, overwrite: true });
-                gsap.to(dot, { opacity: 1, scale: 1.5, duration: 0.2, overwrite: true });
-            } else {
-                // Default state
-                gsap.to(ring, {
-                    width: 40,
-                    height: 40,
-                    marginLeft: -20,
-                    marginTop: -20,
-                    duration: 0.4,
-                    ease: 'power2.out',
-                    overwrite: true,
-                });
-                if (text) gsap.to(text, { opacity: 0, duration: 0.2, overwrite: true });
-                gsap.to(dot, { opacity: 1, scale: 1, duration: 0.2, overwrite: true });
             }
 
-            // Handle dark backgrounds with blend mode
+            // Handle color mode separately (less often changes)
             if (isDark) {
                 cursor.classList.add('inverted');
                 dot.classList.add('inverted');
                 cursor.classList.remove('light');
                 dot.classList.remove('light');
             } else if (isLight) {
-                // Handle light backgrounds - make cursor black
                 cursor.classList.add('light');
                 dot.classList.add('light');
                 cursor.classList.remove('inverted');
                 dot.classList.remove('inverted');
             } else {
-                cursor.classList.remove('inverted');
-                dot.classList.remove('inverted');
-                cursor.classList.remove('light');
-                dot.classList.remove('light');
+                cursor.classList.remove('inverted', 'light');
+                dot.classList.remove('inverted', 'light');
             }
         };
 
         const handleMouseDown = () => {
-            // Squeeze effect on click
-            gsap.to(ring, {
-                scale: 0.7,
-                duration: 0.1,
-                ease: 'power2.out',
-            });
-            gsap.to(dot, {
-                scale: 0.5,
-                duration: 0.1,
-                ease: 'power2.out',
-            });
+            gsap.to(ring, { scale: 0.8, duration: 0.1, ease: 'power2.out' });
+            gsap.to(dot, { scale: 0.6, duration: 0.1, ease: 'power2.out' });
         };
 
         const handleMouseUp = () => {
-            // Spring back with elastic ease
-            gsap.to(ring, {
-                scale: 1,
-                duration: 0.6,
-                ease: 'elastic.out(1, 0.3)',
-            });
-            gsap.to(dot, {
-                scale: 1,
-                duration: 0.6,
-                ease: 'elastic.out(1, 0.3)',
-            });
+            gsap.to(ring, { scale: 1, duration: 0.4, ease: 'elastic.out(1, 0.4)' });
+            gsap.to(dot, { scale: 1, duration: 0.4, ease: 'elastic.out(1, 0.4)' });
         };
 
         const handleWindowLeave = () => {
-            gsap.to([cursor, dot], { opacity: 0, duration: 0.2 });
+            gsap.to([cursor, dot], { opacity: 0, duration: 0.2, overwrite: 'auto' });
         };
 
         const handleWindowEnter = () => {
-            gsap.to([cursor, dot], { opacity: 1, duration: 0.2 });
+            gsap.to([cursor, dot], { opacity: 1, duration: 0.2, overwrite: 'auto' });
         };
 
-        // Initial visibility
+        // Initial setup
         gsap.set([cursor, dot], { opacity: 1 });
 
-        // Start animation loop
-        animationId = requestAnimationFrame(animate);
-
-        // Event listeners
-        window.addEventListener('mousemove', handleMouseMove);
+        // Event listeners with passive option for better performance
+        window.addEventListener('mousemove', handleMouseMove, { passive: true });
         window.addEventListener('mousedown', handleMouseDown);
         window.addEventListener('mouseup', handleMouseUp);
         document.documentElement.addEventListener('mouseleave', handleWindowLeave);
         document.documentElement.addEventListener('mouseenter', handleWindowEnter);
 
         return () => {
-            cancelAnimationFrame(animationId);
             window.removeEventListener('mousemove', handleMouseMove);
             window.removeEventListener('mousedown', handleMouseDown);
             window.removeEventListener('mouseup', handleMouseUp);
