@@ -27,7 +27,7 @@ const bebasNeue = Bebas_Neue({
 });
 
 export const metadata: Metadata = {
-    title: "Patrick | Full-Stack Developer",
+    title: "PATRICK",
     description: "Full-Stack Developer crafting digital experiences that matter. Portfolio showcasing web development projects, skills, and expertise.",
     keywords: ["developer", "portfolio", "full-stack", "web development", "React", "Next.js", "TypeScript"],
     authors: [{ name: "Patrick" }],
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
         apple: '/icon.png',
     },
     openGraph: {
-        title: "Patrick | Full-Stack Developer",
+        title: "PATRICK",
         description: "Full-Stack Developer crafting digital experiences that matter.",
         type: "website",
         locale: "en_US",
@@ -44,7 +44,7 @@ export const metadata: Metadata = {
     },
     twitter: {
         card: "summary_large_image",
-        title: "Patrick | Full-Stack Developer",
+        title: "PATRICK",
         description: "Full-Stack Developer crafting digital experiences that matter.",
     },
     robots: {
@@ -64,7 +64,7 @@ export default function RootLayout({
             <body className={`${inter.className} antialiased min-h-screen relative`} suppressHydrationWarning>
                 {/* Global Backgrounds */}
                 <div className="fixed inset-0 z-[-1] bg-grid pointer-events-none" aria-hidden="true" />
-                <div className="noise" />
+
 
                 <PageTransitionProvider>
                     <LoadingScreen />
