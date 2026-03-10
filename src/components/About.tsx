@@ -33,9 +33,6 @@ export default function About() {
                             <a href="#contact" className="btn btn-primary !p-0">
                                 <MagneticText text="Work with me" className="!px-8 !py-4" />
                             </a>
-                            <a href="/Patrick%20Villanueva%20Resume.pdf" target="_blank" className="btn btn-secondary !p-0">
-                                <MagneticText text="Download CV" className="!px-8 !py-4" />
-                            </a>
                         </div>
                     </div>
                     <div className="lg:col-span-5">

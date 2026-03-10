@@ -87,9 +87,6 @@ export default function Experience() {
                             {headerVisible ? <StaggerText text="Experience" delay={200} /> : "Experience"}
                         </h2>
                     </div>
-                    <a href="/Patrick%20Villanueva%20Resume.pdf" target="_blank" className="btn btn-secondary !p-0">
-                        <MagneticText text="View Full Résumé →" className="!px-6 !py-3" />
-                    </a>
                 </div>
 
                 {/* Experience cards with timeline */}
