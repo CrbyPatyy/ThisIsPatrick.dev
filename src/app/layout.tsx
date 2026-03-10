@@ -27,25 +27,25 @@ const bebasNeue = Bebas_Neue({
 });
 
 export const metadata: Metadata = {
-    title: "PATRICK",
-    description: "Full-Stack Developer crafting digital experiences that matter. Portfolio showcasing web development projects, skills, and expertise.",
-    keywords: ["developer", "portfolio", "full-stack", "web development", "React", "Next.js", "TypeScript"],
+    title: "PATRICK — Data Analyst",
+    description: "Data Analyst specializing in data cleaning, analysis, visualization, and business intelligence. Open to remote opportunities.",
+    keywords: ["data analyst", "remote data analyst", "data visualization", "Excel", "SQL", "Python", "Power BI", "business intelligence", "portfolio"],
     authors: [{ name: "Patrick" }],
     icons: {
         icon: '/icon.png',
         apple: '/icon.png',
     },
     openGraph: {
-        title: "PATRICK",
-        description: "Full-Stack Developer crafting digital experiences that matter.",
+        title: "PATRICK — Data Analyst",
+        description: "Data Analyst specializing in turning raw data into actionable insights. Open to remote opportunities.",
         type: "website",
         locale: "en_US",
         siteName: "Patrick's Portfolio",
     },
     twitter: {
         card: "summary_large_image",
-        title: "PATRICK",
-        description: "Full-Stack Developer crafting digital experiences that matter.",
+        title: "PATRICK — Data Analyst",
+        description: "Data Analyst specializing in turning raw data into actionable insights. Open to remote opportunities.",
     },
     robots: {
         index: true,

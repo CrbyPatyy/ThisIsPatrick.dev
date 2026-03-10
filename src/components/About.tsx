@@ -8,9 +8,9 @@ export default function About() {
     const [ref, visible] = useScrollReveal<HTMLDivElement>();
 
     const stack = [
-        { category: 'Frontend', items: ['React', 'Next.js', 'TypeScript', 'Tailwind'] },
-        { category: 'Backend', items: ['Node.js', 'Supabase (PostgreSQL)'] },
-        { category: 'Tools', items: ['Git', 'Figma', 'VS Code'] },
+        { category: 'Analysis', items: ['Excel', 'SQL', 'Python', 'R'] },
+        { category: 'Visualization', items: ['Power BI', 'Tableau', 'Recharts'] },
+        { category: 'Tools', items: ['Git', 'Jira', 'SPSS', 'Google Sheets', 'Jupyter'] },
     ];
 
     return (
@@ -20,14 +20,14 @@ export default function About() {
                     <div className="lg:col-span-7">
                         <p className="section-label mb-6">About Me</p>
                         <h2 className="heading-subsection mb-8">
-                            {visible ? <StaggerText text="Self-taught developer with a " delay={0} /> : "Self-taught developer with a "}
+                            {visible ? <StaggerText text="Data-driven problem solver " delay={0} /> : "Data-driven problem solver "}
                             <span className="text-[var(--text-muted)]">
-                                {visible ? <StaggerText text="passion for building" delay={400} /> : "passion for building"}
+                                {visible ? <StaggerText text="with a passion for" delay={400} /> : "with a passion for"}
                             </span>{' '}
-                            {visible ? <StaggerText text="meaningful experiences." delay={600} /> : "meaningful experiences."}
+                            {visible ? <StaggerText text="uncovering meaningful insights." delay={600} /> : "uncovering meaningful insights."}
                         </h2>
                         <p className="text-base sm:text-lg text-[var(--text-secondary)] leading-relaxed max-w-2xl mb-12">
-                            It started with a high school professor who showed me how to build a website. That moment changed everything. I've been obsessed with code ever since — even while studying Computer Engineering, I kept learning on my own because I wanted to go deeper. What drives me? Making people stop and think, <em className="text-[var(--text-primary)] not-italic">"Wow, technology can do that?"</em> Outside of coding, I'm usually chasing mountains or diving into the ocean. Fresh air leads to fresh ideas.
+                            With a Computer Engineering background and hands-on experience as a Data Analyst, I specialize in transforming raw, messy data into clear, actionable insights. From cleaning and validating large-scale datasets to building interactive dashboards that tell compelling stories — I thrive on making data work for businesses. <em className="text-[var(--text-primary)] not-italic">"What does the data actually tell us?"</em> is the question that drives me every day. When I&apos;m not crunching numbers, you&apos;ll find me chasing mountains or diving into the ocean.
                         </p>
                         <div className="flex flex-wrap gap-4">
                             <a href="#contact" className="btn btn-primary !p-0">

@@ -5,7 +5,7 @@ import MagneticText from './MagneticText';
 
 const navLinks = [
     { name: 'Work', href: '#experience' },
-    { name: 'Projects', href: '#projects' },
+    { name: 'Portfolio', href: '#projects' },
     { name: 'About', href: '#about' },
     { name: 'Contact', href: '#contact' },
 ];

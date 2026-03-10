@@ -10,18 +10,18 @@ export interface ExperienceItem {
 export const experience: ExperienceItem[] = [
     {
         id: 1,
-        role: "Intern / Web App Developer (Internal Tool Project)",
-        company: "Hytec Power Inc.",
-        period: "Internship",
-        description: "Co-developed a local web app that serves as an internal catalog of industrial machines for staff and company tours. Implemented search/filter features, machine profile pages, and content management workflows while assisting in testing and UI polishing for smoother navigation.",
-        technologies: ["Web Development", "Internal Tools", "UI/UX", "QA Testing"]
-    },
-    {
-        id: 2,
         role: "Data Analyst",
         company: "Accendion",
         period: "2025 (6 Months)",
-        description: "Performed data cleaning and validation for large datasets from major European companies using Excel, SPM, Jira, and internal company software, ensuring data accuracy, consistency, and high-quality outputs.",
-        technologies: ["Data Analysis", "Excel", "SQL", "Visualization"]
+        description: "Performed data cleaning, validation, and quality assurance for large-scale datasets from major European companies. Ensured data accuracy and consistency across multiple sources using Excel, internal SPM tools, and Jira for workflow tracking. Delivered high-quality, analysis-ready outputs that supported downstream reporting and decision-making processes.",
+        technologies: ["Data Cleaning", "Excel", "SQL", "Jira", "SPM", "Data Validation"]
+    },
+    {
+        id: 2,
+        role: "Intern — Data & Internal Tools",
+        company: "Hytec Power Inc.",
+        period: "Internship",
+        description: "Co-developed an internal catalog system organizing industrial machine data for staff and company tours. Built search and filter functionality to enable quick data retrieval, structured machine profile pages for consistent data presentation, and assisted in testing and quality assurance to ensure data integrity across the platform.",
+        technologies: ["Data Management", "Internal Tools", "QA Testing", "Documentation"]
     }
 ];

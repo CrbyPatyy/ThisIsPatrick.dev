@@ -55,11 +55,11 @@ export default function Contact() {
                     <div className="text-center lg:text-left">
                         <p className="section-label mb-6">Get in Touch</p>
                         <h2 className="heading-section mb-8">
-                            {visible ? <StaggerText text="Let's build" delay={0} /> : "Let's build"}<br />
-                            {visible ? <StaggerText text="something" delay={200} /> : "something"}<br />
-                            {visible ? <StaggerText text="great." delay={400} /> : "great."}
+                            {visible ? <StaggerText text="Let's work" delay={0} /> : "Let's work"}<br />
+                            {visible ? <StaggerText text="with your" delay={200} /> : "with your"}<br />
+                            {visible ? <StaggerText text="data." delay={400} /> : "data."}
                         </h2>
-                        <p className="text-base sm:text-lg text-[var(--text-secondary)] mb-10 max-w-md mx-auto lg:mx-0 leading-relaxed">Have a project in mind? I&apos;d love to hear about it. Let&apos;s create something amazing together.</p>
+                        <p className="text-base sm:text-lg text-[var(--text-secondary)] mb-10 max-w-md mx-auto lg:mx-0 leading-relaxed">Looking for a data analyst for your team? I&apos;d love to help turn your data into decisions. Let&apos;s connect.</p>
 
                         <div className="flex flex-col sm:flex-row flex-wrap justify-center lg:justify-start gap-4 sm:gap-6 max-w-lg mx-auto lg:mx-0">
                             <a href="mailto:Patrickpilapilvillanueva@gmail.com" className="group flex items-center gap-2" aria-label="Email Patrick">

@@ -106,7 +106,7 @@ export default function Hero() {
                                     fontFamily: 'var(--font-bebas), sans-serif',
                                 }}
                             >
-                                <span className="text-[var(--text-primary)]">Let's Build</span>
+                                <span className="text-[var(--text-primary)]">Let's Turn</span>
                             </h1>
                         </div>
 
@@ -142,7 +142,7 @@ export default function Hero() {
                                     fontFamily: 'var(--font-bebas), sans-serif',
                                 }}
                             >
-                                <span className="text-[var(--text-primary)]">Something</span>
+                                <span className="text-[var(--text-primary)]">Data Into</span>
                             </h1>
                         </div>
                     </div>
@@ -164,7 +164,7 @@ export default function Hero() {
                             >
                                 <a href="#projects" className="group flex items-center gap-2 text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors">
                                     <span className="text-[var(--text-muted)] group-hover:-translate-x-1 transition-transform">←</span>
-                                    <MagneticText text="View projects" className="!px-0 !py-0 text-base lg:text-lg font-medium" />
+                                    <MagneticText text="View portfolio" className="!px-0 !py-0 text-base lg:text-lg font-medium" />
                                 </a>
                             </div>
                         </div>
@@ -179,7 +179,7 @@ export default function Hero() {
                                     fontFamily: 'var(--font-bebas), sans-serif',
                                 }}
                             >
-                                <span className="text-[var(--text-primary)]">Amazing</span>
+                                <span className="text-[var(--text-primary)]">Insights</span>
                                 <span className="text-[var(--text-muted)] animate-pulse-dot">.</span>
                             </h1>
                         </div>

@@ -31,8 +31,8 @@ export default function Home() {
 
                 <ScrollSection animation="fade">
                     <ScrollStatement
-                        primary="I build digital experiences"
-                        secondary="that blend form with function."
+                        primary="I transform raw data"
+                        secondary="into actionable business insights."
                     />
                 </ScrollSection>
 
@@ -42,8 +42,8 @@ export default function Home() {
 
                 <ScrollSection animation="fade">
                     <ScrollStatement
-                        primary="Crafting solutions"
-                        secondary="one line of code at a time."
+                        primary="Uncovering patterns"
+                        secondary="one dataset at a time."
                     />
                 </ScrollSection>
 

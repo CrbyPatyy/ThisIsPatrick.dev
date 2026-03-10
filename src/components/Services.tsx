@@ -6,8 +6,18 @@ import { useScrollReveal } from '@/hooks/useScrollReveal';
 const services = [
     {
         id: 1,
-        title: 'Business Data Analyst',
-        description: 'Transform raw data into actionable insights that drive business decisions. I help businesses leverage their data through comprehensive analysis, visualization, and strategic recommendations that lead to measurable improvements.',
+        title: 'Data Cleaning & Preparation',
+        description: 'Transform messy, raw datasets into clean, structured, analysis-ready data. I handle missing values, duplicates, outliers, and inconsistencies — ensuring your data foundation is rock-solid before any analysis begins.',
+        icon: (
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+            </svg>
+        )
+    },
+    {
+        id: 2,
+        title: 'Data Analysis & Reporting',
+        description: 'Deep-dive statistical analysis to uncover trends, correlations, and patterns hidden in your data. Deliver clear, automated reports that translate complex findings into recommendations your team can act on immediately.',
         icon: (
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
@@ -15,36 +25,28 @@ const services = [
         )
     },
     {
-        id: 2,
-        title: 'Business Website',
-        description: 'Professional websites that establish your online presence and attract customers. From e-commerce platforms to corporate sites, I create responsive, SEO-optimized websites that convert visitors into clients.',
-        icon: (
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
-            </svg>
-        )
-    },
-    {
         id: 3,
-        title: 'Portfolio Sites',
-        description: 'Stunning portfolios that showcase your work and make you stand out. Perfect for creatives, freelancers, and professionals who want to make a lasting impression with a unique, personalized online presence.',
+        title: 'Data Visualization & Dashboards',
+        description: 'Create interactive dashboards and compelling visual stories that make complex data instantly understandable. From executive summaries to operational metrics — every chart is designed to drive clarity and action.',
         icon: (
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z" />
             </svg>
         )
     },
     {
         id: 4,
-        title: 'Landing Pages',
-        description: 'High-converting pages designed to capture leads and drive action. Using proven design principles and A/B testing strategies, I create landing pages that maximize your marketing ROI.',
+        title: 'Business Intelligence & Strategy',
+        description: 'Bridge the gap between data and decisions. I translate analytical findings into strategic, revenue-impacting recommendations that help businesses optimize operations, reduce costs, and identify growth opportunities.',
         icon: (
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
             </svg>
         )
     },
 ];
+
 
 export default function Services() {
     const [headerRef, headerVisible] = useScrollReveal<HTMLDivElement>();
